@@ -1,0 +1,31 @@
+name: Sync to Hugging Face Hub
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  deployments: write
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    
+    environment:
+      name: Hugging Face Space
+      url: https://huggingface.co/spaces/saad-com/agentic-alpha # Replace with your direct Space URL
+
+    steps:
+      - name: Checkout GitHub Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push to Hugging Face Space
+        uses: huggingface/hub-sync@v0.1.0
+        with:
+          github_repo_id: ${{ github.repository }}
+          huggingface_repo_id: saad-com/agentic-alpha
+          hf_token: ${{ secrets.HF_TOKEN }}
+          repo_type: space
