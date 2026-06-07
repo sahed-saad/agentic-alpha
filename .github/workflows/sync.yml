@@ -11,11 +11,9 @@ permissions:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    
     environment:
       name: Hugging Face Space
-      url: https://huggingface.co/spaces/saad-com/agentic-alpha # Replace with your direct Space URL
-
+      url: https://huggingface.co/spaces/saad-com/agentic-alpha
     steps:
       - name: Checkout GitHub Code
         uses: actions/checkout@v4
